@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<meta charset='utf-8'>
+<title> Интернет могазин </title>
+</head>
+<body>
+
+<ul> {% for i in categories %}
+<li><a href={% url 'category' i.id  %}> {{ i.name }} </a></li>
+{% endfor%}
+</ul>
+<h2> {{ category.name }} </h2>
+{% for p in category.product_set.all %}
+<p>
+<h3> {{ p.name }} </h3>
+<p> {{ p.description }} </p>
+{% if p.quantity == 0 %}
+<p> Товар закончился </p>
+{% else %}
+<b> {{ p.price }} </b>
+<form action={% url 'addtocart' %} method="post">
+{% csrf_token %}
+<input type="integer" name="quantity" value="1" >
+<input type="hidden" name="product_id" value = {{ p.id }}>
+<input type="hidden" name="category_id" value = {{ category.id }}>
+<input type="submit" value="Добавить в корзину">
+</form>
+{% endif %}
+</p>
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

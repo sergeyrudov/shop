@@ -1,0 +1,30 @@
+{% load staticfiles %}
+
+<html>
+<head>
+<meta charset='utf-8'>
+<title> Интернет могазин </title>
+</head>
+<body>
+
+{% for p in products %}
+<p>
+<h3> Наименование товара - {{ p.name }} </h3>
+<p> Цена товара - {{ p.price }} </p>
+<p> Количество - {{ p.quantity }} </p>
+
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
